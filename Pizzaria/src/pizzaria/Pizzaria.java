@@ -22,9 +22,9 @@ public class Pizzaria extends JFrame implements ActionListener {
 	double valorTotalGlobal = 0;
 
 	String[] sabores = new String[] { "Pepperoni", "Mussarela", "Supreme" };
-	
+
 	public void calcularTotal() {
-		double valorTotal = valor+valorAdicionais;
+		double valorTotal = valor + valorAdicionais;
 		valorTotalGlobal = valorTotal;
 	}
 
@@ -70,22 +70,22 @@ public class Pizzaria extends JFrame implements ActionListener {
 		lbAdicionais.setForeground(Color.WHITE);
 		lbAdicionais.setBounds(409, 34, 73, 16);
 		fundo1.add(lbAdicionais);
-		
+
 		JLabel lbSabor = new JLabel("Sabor");
 		lbSabor.setForeground(Color.WHITE);
 		lbSabor.setBounds(84, 46, 37, 16);
 		fundo1.add(lbSabor);
-		
+
 		JLabel lbQnt = new JLabel("Qnt");
 		lbQnt.setForeground(Color.WHITE);
 		lbQnt.setBounds(194, 46, 34, 16);
 		fundo1.add(lbQnt);
-		
+
 		JLabel lbTipo = new JLabel("Tipo");
 		lbTipo.setForeground(Color.WHITE);
 		lbTipo.setBounds(84, 98, 37, 16);
 		fundo1.add(lbTipo);
-		
+
 		JLabel lbTamanho = new JLabel("Tamanho");
 		lbTamanho.setForeground(Color.WHITE);
 		lbTamanho.setBounds(84, 154, 56, 16);
@@ -211,7 +211,6 @@ public class Pizzaria extends JFrame implements ActionListener {
 						valor = valorSupremeF;
 					}
 				}
-
 				/*
 				 * if (rbIndividual.isSelected() && rbRegular.isSelected())
 				 * carrinho.setText("\nVoce não pode ter 2 tamanhos diferentes de pizza"); if
@@ -226,7 +225,6 @@ public class Pizzaria extends JFrame implements ActionListener {
 				 * (rbFamilia.isSelected() && rbRegular.isSelected())
 				 * carrinho.setText("\nVoce não pode ter 2 tamanhos diferentes de pizza");
 				 */
-
 				if (checkBacon.isSelected()) {
 					adicionais = "Bacon";
 					valorAdicionais = valorBacon;
@@ -259,18 +257,15 @@ public class Pizzaria extends JFrame implements ActionListener {
 		JButton confirmarPedido = new JButton("Confirmar Pedido");
 		confirmarPedido.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent cf) {
-				double valorTotal = valor+valorAdicionais;
-				//carrinho.setText();
+				double valorTotal = valor + valorAdicionais;
+				// carrinho.setText();
 			}
 		});
 		confirmarPedido.setBounds(177, 415, 162, 25);
 		fundo1.add(confirmarPedido);
-
 	}
-
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
-
 	}
 }
