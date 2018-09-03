@@ -49,7 +49,7 @@ public class Pizzaria extends JFrame implements ActionListener {
 		JLabel lbImagePizza = new JLabel("");
 		lbImagePizza.setIcon(
 				new ImageIcon("C:\\Users\\unip\\Desktop\\PizzariaGit\\Pizzaria\\src\\pizzaria\\topo_logoOpp.png"));
-		lbImagePizza.setBounds(12, 415, 499, 248);
+		lbImagePizza.setBounds(12, 421, 499, 248);
 		fundo1.add(lbImagePizza);
 
 		JLabel lbPedidos = new JLabel("Pedidos :");
@@ -57,6 +57,11 @@ public class Pizzaria extends JFrame implements ActionListener {
 		lbPedidos.setForeground(Color.WHITE);
 		lbPedidos.setBounds(201, 31, 106, 16);
 		fundo1.add(lbPedidos);
+
+		JLabel lbAdicionais = new JLabel("Adicionais :");
+		lbAdicionais.setForeground(Color.WHITE);
+		lbAdicionais.setBounds(409, 34, 73, 16);
+		fundo1.add(lbAdicionais);
 
 		JTextArea carrinho = new JTextArea();
 		carrinho.setBounds(84, 249, 345, 121);
@@ -90,7 +95,7 @@ public class Pizzaria extends JFrame implements ActionListener {
 		JRadioButton rbFamilia = new JRadioButton("Familia");
 		rbFamilia.setBounds(254, 153, 70, 25);
 		fundo1.add(rbFamilia);
-		
+
 		JCheckBox checkBacon = new JCheckBox("Bacon");
 		checkBacon.setBounds(386, 60, 113, 25);
 		fundo1.add(checkBacon);
@@ -135,8 +140,18 @@ public class Pizzaria extends JFrame implements ActionListener {
 				double valorBacon = 2.00, valorCebola = 1.50, valorChampignon = 2.50, valorTomate = 1.50,
 						valorCatupiry = 3.00, valorPresunto = 2.50;
 
+				String tipo = "";
 				String tamanho = "";
+				String adicionais = "";
 				double valor = 0;
+				double valorAdicionais = 0;
+
+				Integer quantidade = (Integer) qntPizza.getValue();
+
+				if (rbInteira.isSelected()) {
+					tipo = "Inteira";
+				} else if (rbMeia.isSelected())
+					tipo = "Meio a Meio";
 
 				if (rbIndividual.isSelected()) {
 					tamanho = "Individual";
@@ -168,11 +183,45 @@ public class Pizzaria extends JFrame implements ActionListener {
 						valor = valorSupremeF;
 					}
 				}
+
+				/*
+				 * if (rbIndividual.isSelected() && rbRegular.isSelected())
+				 * carrinho.setText("\nVoce não pode ter 2 tamanhos diferentes de pizza"); if
+				 * (rbIndividual.isSelected() && rbFamilia.isSelected())
+				 * carrinho.setText("\nVoce não pode ter 2 tamanhos diferentes de pizza"); if
+				 * (rbRegular.isSelected() && rbIndividual.isSelected())
+				 * carrinho.setText("\nVoce não pode ter 2 tamanhos diferentes de pizza"); if
+				 * (rbRegular.isSelected() && rbFamilia.isSelected())
+				 * carrinho.setText("\nVoce não pode ter 2 tamanhos diferentes de pizza"); if
+				 * (rbFamilia.isSelected() && rbIndividual.isSelected())
+				 * carrinho.setText("\nVoce não pode ter 2 tamanhos diferentes de pizza"); if
+				 * (rbFamilia.isSelected() && rbRegular.isSelected())
+				 * carrinho.setText("\nVoce não pode ter 2 tamanhos diferentes de pizza");
+				 */
+
 				if (checkBacon.isSelected()) {
-					
+					adicionais = "Bacon";
+					valorAdicionais = valorBacon;
+				} else if (checkCebola.isSelected()) {
+					adicionais = "Cebola";
+					valorAdicionais = valorCebola;
+				} else if (checkChampignon.isSelected()) {
+					adicionais = "Champignon";
+					valorAdicionais = valorChampignon;
+				} else if (checkTomate.isSelected()) {
+					adicionais = "Tomate";
+					valorAdicionais = valorTomate;
+				} else if (checkCatupiry.isSelected()) {
+					adicionais = "Catupiry";
+					valorAdicionais = valorCatupiry;
+				} else if (checkPresunto.isSelected()) {
+					adicionais = "Presunto";
+					valorAdicionais = valorPresunto;
 				}
-				carrinho.setText("\nSabor: " + listaSabores.getSelectedItem() + "\nTamanho: " + tamanho + "\nValor: R$"
-						+ df.format(valor));
+
+				carrinho.setText("\nQuantidade: " + quantidade + "\nTipo: " + tipo + "\nSabor: "
+						+ listaSabores.getSelectedItem() + "\nTamanho: " + tamanho + "\tValor: R$" + df.format(valor)
+						+ "\nAdicionais: " + adicionais + "\tValor: R$" + df.format(valorAdicionais));
 			}
 		});
 		adicionarCarrinho.setBounds(179, 211, 160, 25);
@@ -187,7 +236,7 @@ public class Pizzaria extends JFrame implements ActionListener {
 		});
 		confirmarPedido.setBounds(177, 383, 162, 25);
 		fundo1.add(confirmarPedido);
-		
+
 	}
 
 	@Override
