@@ -17,8 +17,16 @@ public class Pizzaria extends JFrame implements ActionListener {
 	public String pepperoni;
 	public String mussarela;
 	public String supreme;
+	double valor = 0;
+	double valorAdicionais = 0;
+	double valorTotalGlobal = 0;
 
 	String[] sabores = new String[] { "Pepperoni", "Mussarela", "Supreme" };
+	
+	public void calcularTotal() {
+		double valorTotal = valor+valorAdicionais;
+		valorTotalGlobal = valorTotal;
+	}
 
 	private BufferedImage applyAlpha(BufferedImage pb, float alpha) {
 		BufferedImage img = new BufferedImage(pb.getWidth(), pb.getHeight(), BufferedImage.TYPE_INT_ARGB);
@@ -36,7 +44,7 @@ public class Pizzaria extends JFrame implements ActionListener {
 		setForeground(Color.RED);
 		setBackground(Color.RED);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 541, 470);
+		setBounds(100, 100, 584, 500);
 
 		fundo1 = new JPanel();
 		fundo1.setBackground(Color.BLACK);
@@ -49,51 +57,71 @@ public class Pizzaria extends JFrame implements ActionListener {
 		JLabel lbImagePizza = new JLabel("");
 		lbImagePizza.setIcon(
 				new ImageIcon("C:\\Users\\unip\\Desktop\\PizzariaGit\\Pizzaria\\src\\pizzaria\\topo_logoOpp.png"));
-		lbImagePizza.setBounds(12, 421, 499, 248);
+		lbImagePizza.setBounds(36, 453, 478, 315);
 		fundo1.add(lbImagePizza);
 
 		JLabel lbPedidos = new JLabel("Pedidos :");
 		lbPedidos.setFont(new Font("Tahoma", Font.BOLD, 20));
 		lbPedidos.setForeground(Color.WHITE);
-		lbPedidos.setBounds(201, 31, 106, 16);
+		lbPedidos.setBounds(207, 13, 106, 16);
 		fundo1.add(lbPedidos);
 
 		JLabel lbAdicionais = new JLabel("Adicionais :");
 		lbAdicionais.setForeground(Color.WHITE);
 		lbAdicionais.setBounds(409, 34, 73, 16);
 		fundo1.add(lbAdicionais);
+		
+		JLabel lbSabor = new JLabel("Sabor");
+		lbSabor.setForeground(Color.WHITE);
+		lbSabor.setBounds(84, 46, 37, 16);
+		fundo1.add(lbSabor);
+		
+		JLabel lbQnt = new JLabel("Qnt");
+		lbQnt.setForeground(Color.WHITE);
+		lbQnt.setBounds(194, 46, 34, 16);
+		fundo1.add(lbQnt);
+		
+		JLabel lbTipo = new JLabel("Tipo");
+		lbTipo.setForeground(Color.WHITE);
+		lbTipo.setBounds(84, 98, 37, 16);
+		fundo1.add(lbTipo);
+		
+		JLabel lbTamanho = new JLabel("Tamanho");
+		lbTamanho.setForeground(Color.WHITE);
+		lbTamanho.setBounds(84, 154, 56, 16);
+		fundo1.add(lbTamanho);
 
 		JTextArea carrinho = new JTextArea();
-		carrinho.setBounds(84, 249, 345, 121);
+		carrinho.setBounds(84, 270, 345, 121);
 		fundo1.add(carrinho);
 
 		JSpinner qntPizza = new JSpinner();
-		qntPizza.setBounds(191, 81, 37, 22);
+		qntPizza.setBounds(191, 63, 37, 22);
 		fundo1.add(qntPizza);
 
 		JComboBox listaSabores = new JComboBox(sabores);
 		listaSabores.addActionListener(this);
-		listaSabores.setBounds(84, 81, 106, 22);
+		listaSabores.setBounds(84, 63, 106, 22);
 		fundo1.add(listaSabores);
 
 		JRadioButton rbInteira = new JRadioButton("Inteira");
-		rbInteira.setBounds(84, 123, 70, 25);
+		rbInteira.setBounds(84, 120, 70, 25);
 		fundo1.add(rbInteira);
 
 		JRadioButton rbMeia = new JRadioButton("1/2");
-		rbMeia.setBounds(158, 123, 70, 25);
+		rbMeia.setBounds(158, 120, 70, 25);
 		fundo1.add(rbMeia);
 
 		JRadioButton rbIndividual = new JRadioButton("Individual");
-		rbIndividual.setBounds(84, 153, 89, 25);
+		rbIndividual.setBounds(84, 177, 89, 25);
 		fundo1.add(rbIndividual);
 
 		JRadioButton rbRegular = new JRadioButton("Regular");
-		rbRegular.setBounds(177, 153, 73, 25);
+		rbRegular.setBounds(177, 177, 73, 25);
 		fundo1.add(rbRegular);
 
 		JRadioButton rbFamilia = new JRadioButton("Familia");
-		rbFamilia.setBounds(254, 153, 70, 25);
+		rbFamilia.setBounds(254, 177, 70, 25);
 		fundo1.add(rbFamilia);
 
 		JCheckBox checkBacon = new JCheckBox("Bacon");
@@ -121,11 +149,11 @@ public class Pizzaria extends JFrame implements ActionListener {
 		fundo1.add(checkPresunto);
 
 		JScrollBar scrollBar = new JScrollBar();
-		scrollBar.setBounds(430, 249, 21, 121);
+		scrollBar.setBounds(430, 270, 21, 121);
 		fundo1.add(scrollBar);
 
 		JSlider slider = new JSlider();
-		slider.setBounds(84, 369, 367, 9);
+		slider.setBounds(84, 393, 367, 9);
 		fundo1.add(slider);
 
 		JButton adicionarCarrinho = new JButton("Adicionar ao Carrinho");
@@ -224,17 +252,18 @@ public class Pizzaria extends JFrame implements ActionListener {
 						+ "\nAdicionais: " + adicionais + "\tValor: R$" + df.format(valorAdicionais));
 			}
 		});
-		adicionarCarrinho.setBounds(179, 211, 160, 25);
+		adicionarCarrinho.setBounds(179, 232, 160, 25);
 		fundo1.add(adicionarCarrinho);
 		adicionarCarrinho.setOpaque(false);
 
 		JButton confirmarPedido = new JButton("Confirmar Pedido");
 		confirmarPedido.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent cf) {
-
+				double valorTotal = valor+valorAdicionais;
+				//carrinho.setText();
 			}
 		});
-		confirmarPedido.setBounds(177, 383, 162, 25);
+		confirmarPedido.setBounds(177, 415, 162, 25);
 		fundo1.add(confirmarPedido);
 
 	}
